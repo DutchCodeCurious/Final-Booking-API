@@ -8,7 +8,7 @@ const upadateUser = async (
   name,
   email,
   phoneNumber,
-  pictureUrl
+  profilePicture
 ) => {
   const prisma = new PrismaClient();
   const updatedUser = await prisma.user.update({
@@ -21,7 +21,7 @@ const upadateUser = async (
       name,
       email,
       phoneNumber,
-      pictureUrl,
+      profilePicture,
     },
   });
   if (!updatedUser || updatedUser.count === 0) {

@@ -3,7 +3,6 @@ const notFoundErrorHandler = (err, req, res, next) => {
     console.log("NotFoundError active");
     return res.status(404).json({ message: err.message });
   }
-
   next(err);
 };
 

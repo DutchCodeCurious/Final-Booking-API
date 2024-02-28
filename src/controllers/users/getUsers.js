@@ -34,7 +34,7 @@ const getUsers = async (username, name, email, phoneNumber, id) => {
     };
   }
 
-  const users = prisma.host.findMany({
+  const users = prisma.user.findMany({
     where: filters,
   });
 

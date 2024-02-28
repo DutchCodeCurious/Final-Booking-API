@@ -12,12 +12,12 @@ const prisma = new PrismaClient();
 
 async function main() {}
 
-const properties = propertiesData.properties;
-const amenities = amenitiesData.amenities;
-const bookings = bookingsData.bookings;
-const reviews = reviewsData.reviews;
-const users = usersData.users;
-const hosts = hostsData.hosts;
+const properties = propertiesData;
+const amenities = amenitiesData;
+const bookings = bookingsData;
+const reviews = reviewsData;
+const users = usersData;
+const hosts = hostsData;
 
 console.log("Seeding the database...");
 

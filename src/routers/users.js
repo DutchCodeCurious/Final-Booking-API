@@ -14,7 +14,7 @@ const router = Express.Router();
 router.get("/", async (req, res, next) => {
   try {
     const { username, name, email, phoneNumber, id } = req.query;
-    const users = await getUsers(username, name, email, phoneNumber);
+    const users = await getUsers(username, name, email, phoneNumber, id);
     res.status(200).send(users);
   } catch (error) {
     console.log(error);
@@ -26,7 +26,8 @@ router.get(
   "/:id",
   async (req, res, next) => {
     try {
-      const user = await getUserById(req.params.id);
+      const id = req.params.id;
+      const user = await getUserById(id);
       res.status(200).send(user);
     } catch (error) {
       next(error);
@@ -37,7 +38,7 @@ router.get(
 
 router.post("/", async (req, res) => {
   try {
-    const { username, password, name, email, phoneNumber, pictureUrl } =
+    const { username, password, name, email, phoneNumber, profilePicture } =
       req.body;
     const user = await createUser(
       username,
@@ -45,7 +46,7 @@ router.post("/", async (req, res) => {
       name,
       email,
       phoneNumber,
-      pictureUrl
+      profilePicture
     );
     res.status(201).send(user);
   } catch (error) {
@@ -57,7 +58,7 @@ router.post("/", async (req, res) => {
 router.put("/:id", authMiddleware, async (req, res, next) => {
   try {
     const { id } = req.params;
-    const { username, password, name, email, phoneNumber, pictureUrl } =
+    const { username, password, name, email, phoneNumber, profilePicture } =
       req.body;
     const updatedUser = await updateUser(
       id,
@@ -66,7 +67,7 @@ router.put("/:id", authMiddleware, async (req, res, next) => {
       name,
       email,
       phoneNumber,
-      pictureUrl
+      profilePicture
     );
     res.status(200).send(updatedUser);
   } catch (error) {

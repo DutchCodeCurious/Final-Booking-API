@@ -8,7 +8,7 @@ const createUser = async (
   name,
   email,
   phoneNumber,
-  pictureUrl
+  profilePicture
 ) => {
   const prisma = new PrismaClient();
 
@@ -27,7 +27,7 @@ const createUser = async (
       name,
       email,
       phoneNumber,
-      pictureUrl,
+      profilePicture,
     },
   });
 };
