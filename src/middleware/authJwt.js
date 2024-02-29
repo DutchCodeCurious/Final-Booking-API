@@ -6,13 +6,13 @@ const authMiddleware = (req, res, next) => {
 
   if (!token) {
     return res
-      .status(401)
+      .status(400)
       .json({ message: "You cannot access this operation without a token!" });
   }
 
   jwt.verify(token, secretKey, (err, decoded) => {
     if (err) {
-      return res.status(403).json({ message: "Invalid token provided" });
+      return res.status(401).json({ message: "Invalid token provided" });
     }
 
     req.user = decoded;

@@ -60,7 +60,7 @@ router.post("/", authMiddleware, async (req, res) => {
       location,
       pricePerNight,
       bedroomCount,
-      bathroomCount,
+      bathRoomCount,
       maxGuestCount,
       rating,
       bookings,
@@ -74,7 +74,7 @@ router.post("/", authMiddleware, async (req, res) => {
       location,
       pricePerNight,
       bedroomCount,
-      bathroomCount,
+      bathRoomCount,
       maxGuestCount,
       rating,
       bookings,
@@ -87,7 +87,7 @@ router.post("/", authMiddleware, async (req, res) => {
     console.log(error);
     res
       .status(500)
-      .send({ message: "Something went wrong by creating proprty" });
+      .send({ message: "Something went wrong by creating property" });
   }
 });
 
@@ -100,7 +100,7 @@ router.put("/:id", authMiddleware, async (req, res, next) => {
       location,
       pricePerNight,
       bedroomCount,
-      bathroomCount,
+      bathRoomCount,
       maxGuestCount,
       rating,
       bookings,
@@ -115,7 +115,7 @@ router.put("/:id", authMiddleware, async (req, res, next) => {
       location,
       pricePerNight,
       bedroomCount,
-      bathroomCount,
+      bathRoomCount,
       maxGuestCount,
       rating,
       bookings,

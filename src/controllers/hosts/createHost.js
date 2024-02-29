@@ -7,7 +7,7 @@ const createHost = async (
   name,
   email,
   phoneNumber,
-  pictureUrl,
+  profilePicture,
   aboutMe
 ) => {
   const prisma = new PrismaClient();
@@ -20,7 +20,7 @@ const createHost = async (
       name,
       email,
       phoneNumber,
-      pictureUrl,
+      profilePicture,
       aboutMe,
     },
   });

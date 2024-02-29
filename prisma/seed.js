@@ -12,12 +12,12 @@ const prisma = new PrismaClient();
 
 async function main() {}
 
-const properties = propertiesData;
-const amenities = amenitiesData;
-const bookings = bookingsData;
-const reviews = reviewsData;
-const users = usersData;
-const hosts = hostsData;
+const { properties } = propertiesData;
+const { amenities } = amenitiesData;
+const { bookings } = bookingsData;
+const { reviews } = reviewsData;
+const { users } = usersData;
+const { hosts } = hostsData;
 
 console.log("Seeding the database...");
 
@@ -42,22 +42,6 @@ for (const host of hosts) {
     update: {},
     create: host,
   });
-}
-
-{
-  /** 
-for (const property of properties) {
-  await prisma.property.upsert({
-    where: { id: property.id },
-    update: {},
-    create: {
-      ...property,
-      amenities: { connect: property.amenities.map((id) => ({ id })) },
-    },
-  });
-}
-
-*/
 }
 
 for (const property of properties) {
@@ -93,6 +77,7 @@ for (const review of reviews) {
 
 main()
   .then(async () => {
+    seed();
     await prisma.$disconnect();
   })
   .catch(async (e) => {
