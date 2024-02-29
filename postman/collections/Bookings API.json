@@ -703,7 +703,7 @@
                     }
                   ],
                   "cookie": [],
-                  "body": "{\n  \"id\": \"f1234567-89ab-cdef-0123-456789abcdef\",\n  \"username\": \"johnDoe\",\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@email.com\",\n  \"phoneNumber\": \"+11234567890\",\n  \"profilePicture\": \"https://example.com/images/johndoe.jpg\",\n  \"aboutMe\": \"I'm a passionate traveler who loves to share my home with fellow explorers. Welcome!\"\n}"
+                  "body": "{\n  \"id\": \"f1234567-89ab-cdef-0123-456789abcdef\",\n  \"username\": \"JohnDoe\",\n  \"name\": \"John Doe\",\n  \"email\": \"johndoe@email.com\",\n  \"phoneNumber\": \"+11234567890\",\n  \"profilePicture\": \"https://example.com/images/johndoe.jpg\",\n  \"aboutMe\": \"I'm a passionate traveler who loves to share my home with fellow explorers. Welcome!\"\n}"
                 },
                 {
                   "id": "372b4912-09ef-4728-b69f-0593c408f3ed",

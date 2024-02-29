@@ -77,7 +77,6 @@ for (const review of reviews) {
 
 main()
   .then(async () => {
-    seed();
     await prisma.$disconnect();
   })
   .catch(async (e) => {

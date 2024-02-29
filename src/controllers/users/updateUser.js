@@ -11,6 +11,16 @@ const upadateUser = async (
   profilePicture
 ) => {
   const prisma = new PrismaClient();
+  const user = await prisma.user.findUnique({
+    where: {
+      id: id,
+    },
+  });
+
+  if (!user) {
+    throw new NotFoundError(`user`, id);
+  }
+
   const updatedUser = await prisma.user.update({
     where: {
       id: id,

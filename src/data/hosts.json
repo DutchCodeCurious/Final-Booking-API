@@ -1,16 +1,6 @@
 {
   "hosts": [
     {
-      "id": "f1234567-89ab-cdef-0123-456789abcdef",
-      "username": "johnDoe",
-      "password": "johnDoe123",
-      "name": "John Doe",
-      "email": "johndoe@email.com",
-      "phoneNumber": "+11234567890",
-      "profilePicture": "https://example.com/images/johndoe.jpg",
-      "aboutMe": "I'm a passionate traveler who loves to share my home with fellow explorers. Welcome!"
-    },
-    {
       "id": "e2345678-90bc-def0-0123-456789abcdef",
       "username": "lindaSmith",
       "password": "lindaS123",

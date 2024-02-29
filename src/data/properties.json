@@ -1,7 +1,7 @@
 {
   "properties": [
     {
-      "id": "g9012345-67ef-0123-4567-89abcdef0123",
+      "id": "z0123456-78ab-cdef-9012-3456789abcdef",
       "title": "Cozy Mountain Retreat",
       "description": "Experience tranquility in our cozy cabin situated on a serene mountain peak.",
       "location": "Rocky Mountains, Colorado",
@@ -49,7 +49,7 @@
       "rating": 5
     },
     {
-      "id": "k3456789-01f2-3456-789a-bcdef0123456",
+      "id": "z9876543-21fe-dcba-1098-76543210dcba",
       "title": "Country Farmhouse",
       "description": "Step back in time and enjoy the simple pleasures of our traditional farmhouse.",
       "location": "Nashville, Tennessee",

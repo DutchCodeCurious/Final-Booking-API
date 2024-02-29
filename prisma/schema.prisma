@@ -26,9 +26,9 @@ model User {
 model Booking {
   id             String   @id @default(uuid())
   propertyId     String
-  property       Property @relation(fields: [propertyId], references: [id])
+  property       Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
   userId         String
-  user           User     @relation(fields: [userId], references: [id])
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   checkinDate    DateTime
   checkoutDate   DateTime
   numberOfGuests Int
@@ -44,7 +44,7 @@ model Review {
   userId     String
   user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   propertyId String
-  property   Property @relation(fields: [propertyId], references: [id])
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
   rating     Int
   comment    String
 
@@ -65,7 +65,7 @@ model Property {
   bookings      Booking[]
   reviews       Review[]
   amenities     Amenity[] 
-  host          Host      @relation(fields: [hostId], references: [id])
+  host          Host      @relation(fields: [hostId], references: [id], onDelete: Cascade)
   hostId        String
 
   @@index([hostId])

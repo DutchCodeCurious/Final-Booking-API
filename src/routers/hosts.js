@@ -88,6 +88,7 @@ router.put("/:id", authMiddleware, async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+  notFoundErrorHandler;
 });
 
 router.delete("/:id", authMiddleware, async (req, res, next) => {

@@ -51,7 +51,7 @@ router.post("/", async (req, res) => {
     res.status(201).send(user);
   } catch (error) {
     console.log(error);
-    res.status(500).send({ message: "Something went wrong by creating user" });
+    res.status(400).send({ message: "Something went wrong by creating user" });
   }
 });
 
@@ -73,6 +73,7 @@ router.put("/:id", authMiddleware, async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+  notFoundErrorHandler;
 });
 
 router.delete("/:id", authMiddleware, async (req, res, next) => {

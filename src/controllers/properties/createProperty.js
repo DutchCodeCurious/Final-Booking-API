@@ -31,7 +31,11 @@ const createProperty = async (
       rating,
       bookings,
       reviews,
-      amenities: { connect: amenities.map((id) => ({ id })) },
+      amenities:
+        amenities && amenities.length > 0
+          ? { connect: amenities.map((id) => ({ id })) }
+          : undefined,
+      //amenities: { connect: amenities.map((id) => ({ id })) },
       hostId,
     },
   });
