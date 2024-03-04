@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { v4 as uuid } from "uuid";
 import NotFoundError from "../../errors/NotFoundError.js";
+import BadRequestError from "../../errors/BadRequestError.js";
 
 const createBooking = async (
   propertyId,
@@ -12,6 +13,20 @@ const createBooking = async (
   bookingStatus
 ) => {
   const prisma = new PrismaClient();
+
+  const fields = [
+    propertyId,
+    userId,
+    checkinDate,
+    checkoutDate,
+    numberOfGuests,
+    totalPrice,
+    bookingStatus,
+  ];
+
+  if (!fields.every(Boolean)) {
+    throw new BadRequestError("All fields are required");
+  }
 
   const property = await prisma.property.findUnique({
     where: {
@@ -31,7 +46,7 @@ const createBooking = async (
     throw new NotFoundError("User", userId);
   }
 
-  return await prisma.booking.create({
+  return prisma.booking.create({
     data: {
       id: uuid(),
       propertyId,

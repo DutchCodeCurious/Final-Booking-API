@@ -1,8 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 import NotFoundError from "../../errors/NotFoundError.js";
+import BadRequestError from "../../errors/BadRequestError.js";
 
 const deleteHost = async (id) => {
   const prisma = new PrismaClient();
+  if (!id) {
+    throw new BadRequestError("id is required");
+  }
 
   const deleteHost = prisma.host.deleteMany({
     where: {

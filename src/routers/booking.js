@@ -3,11 +3,11 @@ import notFoundErrorHandler from "../middleware/NotFoundErrorHandler.js";
 import authMiddleware from "../middleware/authJwt.js";
 
 // Controllers
-import createBooking from "../controllers/Bookings/createBooking.js";
-import deleteBooking from "../controllers/Bookings/deleteBooking.js";
-import getBookingById from "../controllers/Bookings/getBookingById.js";
-import getBookings from "../controllers/Bookings/getBookings.js";
-import updateBooking from "../controllers/Bookings/updateBooking.js";
+import createBooking from "../controllers/bookings/createBooking.js";
+import deleteBooking from "../controllers/bookings/deleteBooking.js";
+import getBookingById from "../controllers/bookings/getBookingById.js";
+import getBookings from "../controllers/bookings/getBookings.js";
+import updateBooking from "../controllers/bookings/updateBooking.js";
 
 const router = Express.Router();
 
@@ -33,10 +33,7 @@ router.get("/", async (req, res, next) => {
     );
     res.status(200).send(Bookings);
   } catch (error) {
-    console.log(error);
-    res
-      .status(500)
-      .send({ message: "Something went wrong by getting Bookings" });
+    next(error);
   }
 });
 
@@ -53,7 +50,7 @@ router.get(
   notFoundErrorHandler
 );
 
-router.post("/", authMiddleware, async (req, res) => {
+router.post("/", authMiddleware, async (req, res, next) => {
   try {
     const {
       propertyId,
@@ -75,10 +72,7 @@ router.post("/", authMiddleware, async (req, res) => {
     );
     res.status(201).send(Booking);
   } catch (error) {
-    console.log(error);
-    res
-      .status(500)
-      .send({ message: "Something went wrong by creating booking" });
+    next(error);
   }
 });
 

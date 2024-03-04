@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import NotFoundError from "../../errors/NotFoundError.js";
 
 const getUsers = async (username, name, email, phoneNumber, id) => {
   const prisma = new PrismaClient();
@@ -37,6 +38,9 @@ const getUsers = async (username, name, email, phoneNumber, id) => {
   const users = prisma.user.findMany({
     where: filters,
   });
+  if (users === null) {
+    throw new NotFoundError("Users not found");
+  }
 
   return users;
 };

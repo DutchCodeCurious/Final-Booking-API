@@ -1,6 +1,9 @@
 import dotenv from "dotenv";
 import express from "express";
 
+// Errors
+import NotFoundError from "./errors/NotFoundError.js";
+
 // Middleware
 import log from "./middleware/logMiddleware.js";
 
@@ -18,19 +21,6 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(log);
-
-app.use((err, req, res, next) => {
-  if (err instanceof NotFoundError) {
-    res.status(404).json({ error: err.message });
-  } else if (err instanceof ValidationError) {
-    res.status(400).json({ error: err.message });
-  } else if (err instanceof UnauthorizedError) {
-    res.status(401).json({ error: err.message });
-  } else {
-    console.error(err);
-    res.status(500).json({ error: "An unexpected error occurred" });
-  }
-});
 
 app.use("/users", usersRouter);
 app.use("/properties", propertiesRouter);

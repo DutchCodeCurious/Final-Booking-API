@@ -32,10 +32,7 @@ router.get("/", async (req, res, next) => {
     );
     res.status(200).send(properties);
   } catch (error) {
-    console.log(error);
-    res
-      .status(500)
-      .send({ message: "Something went wrong by getting properties" });
+    next(error);
   }
 });
 
@@ -52,7 +49,7 @@ router.get(
   notFoundErrorHandler
 );
 
-router.post("/", authMiddleware, async (req, res) => {
+router.post("/", authMiddleware, async (req, res, next) => {
   try {
     const {
       title,
@@ -84,10 +81,7 @@ router.post("/", authMiddleware, async (req, res) => {
     );
     res.status(201).send(property);
   } catch (error) {
-    console.log(error);
-    res
-      .status(500)
-      .send({ message: "Something went wrong by creating property" });
+    next(error);
   }
 });
 

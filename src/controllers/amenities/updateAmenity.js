@@ -1,8 +1,14 @@
 import { PrismaClient } from "@prisma/client";
 import NotFoundError from "../../errors/NotFoundError.js";
+import BadRequestError from "../../errors/BadRequestError.js";
 
 const updateAmenity = async (id, name) => {
   const prisma = new PrismaClient();
+
+  if (!id || !name) {
+    throw new BadRequestError("id and name are required");
+  }
+
   const amenity = prisma.amenity.findUnique({
     where: {
       id,

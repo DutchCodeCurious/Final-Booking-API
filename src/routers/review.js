@@ -16,10 +16,7 @@ router.get("/", async (req, res, next) => {
     const reviews = await getReviews();
     res.status(200).send(reviews);
   } catch (error) {
-    console.log(error);
-    res
-      .status(500)
-      .send({ message: "Something went wrong by getting reviews" });
+    next(error);
   }
 });
 
@@ -36,16 +33,13 @@ router.get(
   notFoundErrorHandler
 );
 
-router.post("/", authMiddleware, async (req, res) => {
+router.post("/", authMiddleware, async (req, res, next) => {
   try {
     const { propertyId, userId, rating, comment } = req.body;
     const review = await createReview(propertyId, userId, rating, comment);
     res.status(201).send(review);
   } catch (error) {
-    console.log(error);
-    res
-      .status(500)
-      .send({ message: "Something went wrong by creating review" });
+    next(error);
   }
 });
 
