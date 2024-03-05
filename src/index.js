@@ -1,8 +1,6 @@
+import Sentry from "@sentry/node";
 import dotenv from "dotenv";
 import express from "express";
-
-// Errors
-import NotFoundError from "./errors/NotFoundError.js";
 
 // Middleware
 import log from "./middleware/logMiddleware.js";
@@ -19,6 +17,30 @@ import loginRouter from "./routers/login.js";
 dotenv.config();
 
 const app = express();
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  integrations: [],
+});
+
+app.use(Sentry.Handlers.requestHandler());
+
+// All your controllers should live here
+app.get("/", function rootHandler(req, res) {
+  res.end("Hello world!");
+});
+
+// The error handler must be registered before any other error middleware and after all controllers
+app.use(Sentry.Handlers.errorHandler());
+
+// Optional fallthrough error handler
+app.use(function onError(err, req, res, next) {
+  // The error id is attached to `res.sentry` to be returned
+  // and optionally displayed to the user for support.
+  res.statusCode = 500;
+  res.end(res.sentry + "\n");
+});
+
 app.use(express.json());
 app.use(log);
 
