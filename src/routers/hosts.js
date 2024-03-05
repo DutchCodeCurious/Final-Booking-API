@@ -17,8 +17,7 @@ router.get("/", async (req, res, next) => {
     const hosts = await getHosts(username, name, email, phoneNumber);
     res.status(200).send(hosts);
   } catch (error) {
-    console.log(error);
-    res.status(500).send({ message: "Something went wrong by getting hosts" });
+    next(error);
   }
 });
 
@@ -35,7 +34,7 @@ router.get(
   notFoundErrorHandler
 );
 
-router.post("/", async (req, res) => {
+router.post("/", async (req, res, next) => {
   try {
     const {
       username,
@@ -57,10 +56,17 @@ router.post("/", async (req, res) => {
     );
     res.status(201).send(host);
   } catch (error) {
-    console.log(error);
-    res.status(500).send({ message: "Something went wrong by creating host" });
+    next(error);
   }
 });
+
+// username,
+// password,
+// name,
+// email,
+// phoneNumber,
+// profilePicture,
+// aboutMe
 
 router.put("/:id", authMiddleware, async (req, res, next) => {
   try {
