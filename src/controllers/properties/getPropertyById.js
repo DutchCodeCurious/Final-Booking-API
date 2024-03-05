@@ -9,12 +9,12 @@ const getPropertyById = async (id) => {
     throw new BadRequestError("id is required");
   }
 
-  const property = prisma.property.findUnique({
+  const property = await prisma.property.findUnique({
     where: {
       id: id,
     },
   });
-  if (!property) {
+  if (!property || property.count === 0) {
     throw new NotFoundError("property", id);
   }
   return property;

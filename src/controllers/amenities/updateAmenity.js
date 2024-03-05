@@ -9,14 +9,16 @@ const updateAmenity = async (id, name) => {
     throw new BadRequestError("id and name are required");
   }
 
-  const amenity = prisma.amenity.findUnique({
+  const amenity = await prisma.amenity.findUnique({
     where: {
       id,
     },
   });
-  if (!amenity) {
+
+  if (!amenity || amenity.count === 0) {
     throw new NotFoundError("amenity", id);
   }
+
   return prisma.amenity.update({
     where: {
       id,

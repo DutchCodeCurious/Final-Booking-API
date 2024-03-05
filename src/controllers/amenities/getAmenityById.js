@@ -9,12 +9,12 @@ const getAmenity = async (id) => {
     throw new BadRequestError("id is required");
   }
 
-  const amenity = prisma.amenity.findUnique({
+  const amenity = await prisma.amenity.findUnique({
     where: {
       id: id,
     },
   });
-  if (!amenity) {
+  if (!amenity || amenity.count === 0) {
     throw new NotFoundError("amenity", id);
   }
   return amenity;

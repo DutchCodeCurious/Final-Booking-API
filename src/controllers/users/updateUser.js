@@ -3,7 +3,15 @@ import NotFoundError from "../../errors/NotFoundError.js";
 import BadRequestError from "../../errors/BadRequestError.js";
 const prisma = new PrismaClient();
 
-const upadateUser = async (id, userData) => {
+const upadateUser = async (
+  id,
+  username,
+  password,
+  name,
+  email,
+  phoneNumber,
+  profilePicture
+) => {
   if (!id) {
     throw new BadRequestError("id is required");
   }
@@ -12,12 +20,11 @@ const upadateUser = async (id, userData) => {
   if (!user) {
     throw new NotFoundError(`user`, id);
   }
-  const { username, password, name, email, phoneNumber, profilePicture } =
-    userData;
-  const fields = [username, password, name, email, phoneNumber, profilePicture];
-  if (fields.some(Boolean)) {
-    throw new BadRequestError("At least one field is required to update user!");
-  }
+
+  // const fields = [username, password, name, email, phoneNumber, profilePicture];
+  // if (fields.some(Boolean)) {
+  //   throw new BadRequestError("At least one field is required to update user!");
+  // }
 
   const updatedUser = await prisma.user.update({
     where: {

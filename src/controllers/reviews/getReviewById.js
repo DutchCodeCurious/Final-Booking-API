@@ -8,7 +8,7 @@ const getReviewById = async (id) => {
   if (!id) {
     throw new BadRequestError("id is required");
   }
-  const review = prisma.review.findUnique({
+  const review = await prisma.review.findUnique({
     where: {
       id: id,
     },

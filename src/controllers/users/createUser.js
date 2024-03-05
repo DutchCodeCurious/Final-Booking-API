@@ -13,9 +13,20 @@ const createUser = async (
 ) => {
   const prisma = new PrismaClient();
 
-  const fields = [username, password, name, email, phoneNumber, profilePicture];
-  if (!fields.every(Boolean)) {
-    throw new BadRequestError("All fields are required!");
+  const fields = {
+    username,
+    password,
+    name,
+    email,
+    phoneNumber,
+    profilePicture,
+  };
+  const missingFields = Object.keys(fields).filter((key) => !fields[key]);
+
+  if (missingFields.length > 0) {
+    throw new BadRequestError(
+      `The following fields are required: ${missingFields.join(", ")}`
+    );
   }
 
   const existingUser = await getUserByUsername(username);

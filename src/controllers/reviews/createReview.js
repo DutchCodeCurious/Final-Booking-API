@@ -6,10 +6,12 @@ import BadRequestError from "../../errors/BadRequestError.js";
 const createReview = async (propertyId, userId, rating, comment) => {
   const prisma = new PrismaClient();
 
-  const fields = [propertyId, userId, rating, comment];
-  if (!fields.every(Boolean)) {
+  const fields = { propertyId, userId, rating, comment };
+  const missingFields = Object.keys(fields).filter((key) => !fields[key]);
+
+  if (missingFields.length > 0) {
     throw new BadRequestError(
-      "propertyId, userId, rating, and comment are required"
+      `The following fields are required: ${missingFields.join(", ")}`
     );
   }
 

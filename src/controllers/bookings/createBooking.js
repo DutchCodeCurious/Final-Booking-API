@@ -14,7 +14,7 @@ const createBooking = async (
 ) => {
   const prisma = new PrismaClient();
 
-  const fields = [
+  const fields = {
     propertyId,
     userId,
     checkinDate,
@@ -22,12 +22,15 @@ const createBooking = async (
     numberOfGuests,
     totalPrice,
     bookingStatus,
-  ];
+  };
 
-  if (!fields.every(Boolean)) {
-    throw new BadRequestError("All fields are required");
+  const missingFields = Object.keys(fields).filter((key) => !fields[key]);
+
+  if (missingFields.length > 0) {
+    throw new BadRequestError(
+      `The following fields are required: ${missingFields.join(", ")}`
+    );
   }
-
   const property = await prisma.property.findUnique({
     where: {
       id: propertyId,

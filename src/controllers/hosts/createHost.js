@@ -13,7 +13,7 @@ const createHost = async (
 ) => {
   const prisma = new PrismaClient();
 
-  const fields = [
+  const fields = {
     username,
     password,
     name,
@@ -21,10 +21,14 @@ const createHost = async (
     phoneNumber,
     profilePicture,
     aboutMe,
-  ];
+  };
 
-  if (!fields.every(Boolean)) {
-    throw new BadRequestError("All fields are required");
+  const missingFields = Object.keys(fields).filter((key) => !fields[key]);
+
+  if (missingFields.length > 0) {
+    throw new BadRequestError(
+      `The following fields are required: ${missingFields.join(", ")}`
+    );
   }
 
   return prisma.host.create({

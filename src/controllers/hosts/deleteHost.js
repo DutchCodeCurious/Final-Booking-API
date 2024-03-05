@@ -8,7 +8,7 @@ const deleteHost = async (id) => {
     throw new BadRequestError("id is required");
   }
 
-  const deleteHost = prisma.host.deleteMany({
+  const deleteHost = await prisma.host.deleteMany({
     where: {
       id,
     },

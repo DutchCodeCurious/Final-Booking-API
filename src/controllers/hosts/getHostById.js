@@ -9,12 +9,12 @@ const getHostById = async (id) => {
     throw new BadRequestError("id is required");
   }
 
-  const host = prisma.host.findUnique({
+  const host = await prisma.host.findUnique({
     where: {
       id,
     },
   });
-  if (!host) {
+  if (!host || host.count === 0) {
     throw new NotFoundError("host", id);
   }
   return host;

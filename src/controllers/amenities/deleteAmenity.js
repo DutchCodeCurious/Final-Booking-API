@@ -1,7 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import NotFoundError from "../../errors/NotFoundError.js";
 import BadRequestError from "../../errors/BadRequestError.js";
-const delteAmenity = async (id) => {
+
+const deleteAmenity = async (id) => {
   const prisma = new PrismaClient();
 
   if (!id) {
@@ -19,4 +20,4 @@ const delteAmenity = async (id) => {
   return id;
 };
 
-export default delteAmenity;
+export default deleteAmenity;
