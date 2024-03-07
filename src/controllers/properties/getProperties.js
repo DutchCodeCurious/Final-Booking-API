@@ -40,7 +40,7 @@ const getProperties = async (
 
   if (pricePerNight) {
     filters.pricePerNight = {
-      lte: parseFloat(pricePerNight),
+      equals: parseFloat(pricePerNight),
     };
   }
 

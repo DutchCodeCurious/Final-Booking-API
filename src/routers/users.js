@@ -1,5 +1,5 @@
 import Express from "express";
-import notFoundErrorHandler from "../middleware/NotFoundErrorHandler.js";
+import notFoundErrorHandler from "../middleware/notFoundErrorHandler.js";
 import authMiddleware from "../middleware/authJwt.js";
 
 // Controllers
@@ -35,7 +35,7 @@ router.get(
   notFoundErrorHandler
 );
 
-router.post("/", async (req, res, next) => {
+router.post("/", authMiddleware, async (req, res, next) => {
   try {
     const { username, password, name, email, phoneNumber, profilePicture } =
       req.body;

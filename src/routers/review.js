@@ -1,5 +1,5 @@
 import Express from "express";
-import notFoundErrorHandler from "../middleware/NotFoundErrorHandler.js";
+import notFoundErrorHandler from "../middleware/notFoundErrorHandler.js";
 import authMiddleware from "../middleware/authJwt.js";
 
 // Controllers

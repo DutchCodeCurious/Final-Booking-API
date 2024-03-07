@@ -8,7 +8,7 @@ import getPropertyById from "../controllers/properties/getPropertyById.js";
 import getProperties from "../controllers/properties/getProperties.js";
 import updateProperty from "../controllers/properties/updateProperty.js";
 
-import notFoundErrorHandler from "../middleware/NotFoundErrorHandler.js";
+import notFoundErrorHandler from "../middleware/notFoundErrorHandler.js";
 
 const router = Express.Router();
 
