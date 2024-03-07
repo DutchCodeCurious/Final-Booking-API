@@ -16,10 +16,7 @@ router.get("/", async (req, res, next) => {
     const Amenities = await getAmenities();
     res.status(200).send(Amenities);
   } catch (error) {
-    console.log(error);
-    res
-      .status(500)
-      .send({ message: "Something went wrong by getting Amenities" });
+    next(error);
   }
 });
 
@@ -36,16 +33,13 @@ router.get(
   notFoundErrorHandler
 );
 
-router.post("/", authMiddleware, async (req, res) => {
+router.post("/", authMiddleware, async (req, res, next) => {
   try {
     const { name } = req.body;
     const Amenity = await createAmenity(name);
     res.status(201).send(Amenity);
   } catch (error) {
-    console.log(error);
-    res
-      .status(500)
-      .send({ message: "Something went wrong by creating Amenity" });
+    next(error);
   }
 });
 

@@ -17,8 +17,7 @@ router.get("/", async (req, res, next) => {
     const users = await getUsers(username, name, email, phoneNumber, id);
     res.status(200).send(users);
   } catch (error) {
-    console.log(error);
-    res.status(500).send({ message: "Something went wrong by getting users" });
+    next(error);
   }
 });
 
@@ -36,7 +35,7 @@ router.get(
   notFoundErrorHandler
 );
 
-router.post("/", async (req, res) => {
+router.post("/", async (req, res, next) => {
   try {
     const { username, password, name, email, phoneNumber, profilePicture } =
       req.body;
@@ -50,8 +49,7 @@ router.post("/", async (req, res) => {
     );
     res.status(201).send(user);
   } catch (error) {
-    console.log(error);
-    res.status(400).send({ message: "Something went wrong by creating user" });
+    next(error);
   }
 });
 

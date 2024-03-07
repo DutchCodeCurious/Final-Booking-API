@@ -1,9 +1,19 @@
 import { PrismaClient } from "@prisma/client";
 import { v4 as uuid } from "uuid";
 import NotFoundError from "../../errors/NotFoundError.js";
+import BadRequestError from "../../errors/BadRequestError.js";
 
 const createReview = async (propertyId, userId, rating, comment) => {
   const prisma = new PrismaClient();
+
+  const fields = { propertyId, userId, rating, comment };
+  const missingFields = Object.keys(fields).filter((key) => !fields[key]);
+
+  if (missingFields.length > 0) {
+    throw new BadRequestError(
+      `The following fields are required: ${missingFields.join(", ")}`
+    );
+  }
 
   const property = await prisma.property.findUnique({
     where: {

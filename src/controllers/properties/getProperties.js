@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import getAmenity from "../amenities/getAmenities.js";
+import NotFoundError from "../../errors/NotFoundError.js";
 
 const getProperties = async (
   title,
@@ -56,6 +57,10 @@ const getProperties = async (
   const properties = await prisma.property.findMany({
     where: filters,
   });
+
+  if (properties === null) {
+    throw new NotFoundError("Properties not found");
+  }
 
   return properties;
 };

@@ -1,8 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import NotFoundError from "../../errors/NotFoundError.js";
+import BadRequestError from "../../errors/BadRequestError.js";
 
-const updateReview = async (id, propertyId, userId, rating, comment) => {
+const updateReview = async (id, rating, comment) => {
   const prisma = new PrismaClient();
+
+  if (!id) {
+    throw new BadRequestError("Review ID is required");
+  }
 
   const review = await prisma.review.findUnique({
     where: {

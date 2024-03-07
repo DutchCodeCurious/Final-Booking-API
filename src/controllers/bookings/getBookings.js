@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import NotFoundError from "../../errors/NotFoundError.js";
 
 const getBookings = async (
   propertyId,
@@ -58,7 +59,9 @@ const getBookings = async (
   const bookings = await prisma.booking.findMany({
     where: filters,
   });
-
+  if (bookings === null) {
+    throw new NotFoundError("Bookings not found");
+  }
   return bookings;
 };
 

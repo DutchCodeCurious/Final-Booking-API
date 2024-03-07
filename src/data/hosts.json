@@ -39,6 +39,16 @@
       "phoneNumber": "+15234567894",
       "profilePicture": "https://example.com/images/paulgreen.jpg",
       "aboutMe": "Engineer by profession, passionate about history. Stay in my vintage-themed home and relive the past."
+    },
+    {
+      "id": "f1234567-89ab-cdef-0123-456789abcdef",
+      "username": "JoppePetit",
+      "password": "joppeP789",
+      "name": "Joppe Petit",
+      "email": "jp@email.com",
+      "phoneNumber": "+15233567894",
+      "profilePicture": "https://example.com/images/joppegreen.jpg",
+      "aboutMe": "Engineer by profession, passionate about history. Stay in my vintage-themed home and relive the past."
     }
   ]
 }
